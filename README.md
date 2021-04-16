@@ -31,7 +31,6 @@ http://localhost:3000
   - O campo "Ultima Atualização" é preenchido automaticamente na inserção/edição de um veículo, portanto o campo fica desabilitado na tela inserção/edição.
   - A lista de opção de cores é uma lista de informações já pré-cadastradas no backend da aplicação.
   - Não terminei a implementação de inclusão de um veículo que já existe, para nesse caso exibir uma mensagem de alerta para o usuário, até por conta disso vocês verão que há um componente "Alert" na classe "VeiculoEdit.js" que não está sendo exibido nunca.
-  - O botão de excluir apenas inativa o registro "Ativo = false", mas deixa o usuário continuar alterando as informações, se assim desejar.
 
 ### Considerações Finais
   - Os commits foram dados a partir de outra conta minha no github que se chama "naodeixesobrar" que é uma conta utilizada para desenvolvimento de um projeto pessoal.  A minha máquina já estava com as credenciais do git configuradas para esse perfil e eu só percebi ao dar push nos arquivos.
