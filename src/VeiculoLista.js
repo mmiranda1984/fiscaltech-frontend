@@ -20,7 +20,7 @@ class VeiculoLista extends Component {
   componentDidMount() {
     this.setState({isLoading: true});
 
-    fetch('api/veiculos/listar')
+    fetch('api/veiculos')
       .then(response => response.json())
       .then(data => this.setState({veiculos: data, isLoading: false}));
   }
@@ -30,7 +30,7 @@ class VeiculoLista extends Component {
 //   - Quando o processo terminar, dá um reload na página para exibir a informação que o veículo está inativo
 //     chamando novamente o componentDidMount automaticamente no reload
   async remove(placa) {
-    await fetch(`/api/veiculos/excluir/${placa}`, {
+    await fetch(`/api/veiculos/${placa}`, {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',

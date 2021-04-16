@@ -40,20 +40,20 @@ class VeiculoEdit extends Component {
 //   - Carrega a lista de cores que serão exibidas no componente Select do react-select.
   async componentDidMount() {
     if (this.props.match.params.id !== 'new') {
-        const veiculo = await (await fetch(`/api/veiculos/obter/${this.props.match.params.id}`)).json();
+        const veiculo = await (await fetch(`/api/veiculos/${this.props.match.params.id}`)).json();
         this.setState({item: veiculo});
         if (this.state.item.cor) {
             let corComponenteSelect = {value: null, label: null}
-            corComponenteSelect.value = this.state.item.cor.idcor;
+            corComponenteSelect.value = this.state.item.cor.id;
             corComponenteSelect.label = this.state.item.cor.descricao;
             this.setState({corSelecionada: corComponenteSelect})
         }
       }
-    fetch('/api/cores/listar')
+    fetch('/api/cores')
         .then(response => response.json())
         .then(data => {
             let coresComponenteSelect = data.map(function (cor) {
-                return { value: cor.idcor, label: cor.descricao };
+                return { value: cor.id, label: cor.descricao };
             })
             this.setState({cores: coresComponenteSelect, isLoading: false})
         })
@@ -82,13 +82,13 @@ class VeiculoEdit extends Component {
     event.preventDefault();
     const {item} = this.state;
     if (this.state.corSelecionada.value !== null) {
-        let cor = {idcor: null, descricao: null}
-        cor.idcor = this.state.corSelecionada.value;
+        let cor = {id: null, descricao: null}
+        cor.id = this.state.corSelecionada.value;
         cor.descricao = this.state.corSelecionada.label;
         item.cor = cor;
     }
 
-    await fetch((item.atualizadoEm) ? `/api/veiculos/editar/${item.placa}` : '/api/veiculos/gravar', {
+    await fetch((item.atualizadoEm) ? `/api/veiculos` : '/api/veiculos', {
         method: (item.atualizadoEm) ? 'PUT' : 'POST',
         headers: {
             'Accept': 'application/json',
